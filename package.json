@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "visual-studio-code-soundboard.helloWorld",
-        "title": "Hello World"
+        "command": "visual-studio-code-soundboard.enable",
+        "title": "Enable Visual Studio Code Soundboard"
       }
     ]
   },

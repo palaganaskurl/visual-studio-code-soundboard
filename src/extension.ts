@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand(
-    'visual-studio-code-soundboard.helloWorld',
+    'visual-studio-code-soundboard.enable',
     () => {
       // The code you place here will be executed every time your command is executed
       // Display a message box to the user
@@ -29,12 +29,24 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.workspace.onDidChangeTextDocument((e) => {
         const diagnostics = vscode.languages.getDiagnostics(e.document.uri);
 
+        // Check if the document has a supported language
+        if (
+          !vscode.languages.match(
+            { language: e.document.languageId },
+            e.document
+          )
+        ) {
+          vscode.window.showErrorMessage('Unsupported file language.');
+
+          return;
+        }
+
         if (diagnostics.length > 0) {
           audioPlayer.playRandomSound();
         }
       });
 
-      audioPlayer.playRandomSound();
+      audioPlayer.playSpecificAudio('vibez-lets-go-1.mp3');
     }
   );
 

@@ -16,7 +16,7 @@ class AudioPlayer {
     this._audioFiles = this.getAudioFiles();
   }
 
-  private getAudioFiles = (): string[] => {
+  private getAudioFiles(): string[] {
     const audioFiles: string[] = [];
 
     fs.readdirSync(this._assetsPath).forEach((file: string) => {
@@ -24,9 +24,9 @@ class AudioPlayer {
     });
 
     return audioFiles;
-  };
+  }
 
-  playRandomSound = () => {
+  public playRandomSound(): void {
     const audio =
       this._audioFiles[Math.floor(Math.random() * this._audioFiles.length)];
 
@@ -40,7 +40,20 @@ class AudioPlayer {
     sound.play(audioPath).then(() => {
       this._isCurrentlyPlaying = false;
     });
-  };
+  }
+
+  public playSpecificAudio(audioFile: string): void {
+    const audioPath = path.join(this._assetsPath, audioFile);
+
+    if (this._isCurrentlyPlaying) {
+      return;
+    }
+
+    this._isCurrentlyPlaying = true;
+    sound.play(audioPath).then(() => {
+      this._isCurrentlyPlaying = false;
+    });
+  }
 }
 
 export default AudioPlayer;
