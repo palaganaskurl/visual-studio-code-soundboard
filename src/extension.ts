@@ -8,10 +8,6 @@ import AudioPlayer from './audioPlayer';
 export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  console.log(
-    'Congratulations, your extension "visual-studio-code-soundboard" is now active!'
-  );
-
   const audioPlayer = new AudioPlayer();
 
   // The command has been defined in the package.json file
@@ -23,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
       // The code you place here will be executed every time your command is executed
       // Display a message box to the user
       vscode.window.showInformationMessage(
-        'Hello World from visual-studio-code-soundboard!'
+        'You activated visual-studio-code-soundboard!'
       );
 
       vscode.workspace.onDidChangeTextDocument((e) => {
